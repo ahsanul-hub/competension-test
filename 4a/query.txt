@@ -1,0 +1,34 @@
+mysql -u root -p
+
+CREATE DATABASE task_collections;
+
+use task_collections;
+
+
+create table users(
+    	id int auto_increment primary key,
+    	email varchar(50),
+	username varchar(100),
+	password varchar(50)
+
+);
+
+create table collections(
+    	id int auto_increment primary key,
+    	name varchar(50),
+	user_id int, FOREIGN KEY (user_id) REFERENCES users(id)
+	
+);
+
+create table task(
+    	id int auto_increment primary key,
+    	name varchar(50),
+	isDone varchar(10),
+	collections_id int, FOREIGN KEY (collections_id) REFERENCES collections(id)
+);
+
+SELECT * FROM collections;
+
+INSERT INTO users (username, email, password) VALUES ("${name}","${email}","${password}");
+
+INSERT INTO collections (name, user_id) VALUES ("${name}", ${userId});
